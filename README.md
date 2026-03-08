@@ -40,7 +40,7 @@ Kamera menggunakan konfigurasi default AI-Thinker. Berikut pin yang digunakan:
 
 #### 1. Install Board ESP32 di Arduino IDE:
 
-- Tambahkan URL berikut ke File > Preferences > Additional Boards Manager URLs: [Arduino ESP32-CAAM](https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json).
+- Tambahkan URL berikut ke File > Preferences > Additional Boards Manager URLs: [Arduino ESP32-CAM](https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json).
 - Buka Tools > Board > Boards Manager, cari "ESP32" dan install.
 
 #### 2. Install Library yang Diperlukan (umumnya sudah termasuk dalam paket ESP32):
