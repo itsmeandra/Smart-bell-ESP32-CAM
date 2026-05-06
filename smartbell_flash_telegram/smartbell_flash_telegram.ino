@@ -1,9 +1,7 @@
 #include "WiFi.h"
 #include "WiFiClientSecure.h"
 #include "esp_camera.h"
-
-const char* ssid     = "";     //SSID WiFi
-const char* password = "";    //Ganti dengan Password WiFi
+#include <WiFiManager.h>
 
 String BOT_TOKEN = "";  // API Telegram
 String CHAT_ID   = "";  // ID Telegram
@@ -46,14 +44,18 @@ void setup() {
   digitalWrite(FLASH_PIN, LOW);    // <-- Pastikan flash mati saat pertama kali nyala
 
   // Setup Koneksi WiFi
+  WiFiManager wifiManager;
+  
   WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid, password);
-  Serial.print("Menghubungkan ke WiFi");
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
+  if (!wifiManager.autoConnect("Smart-Doorbell")) {
+    Serial.println("Gagal terhubung dan kehabisan waktu (Timeout).");
+    // Restart ESP32 dan coba lagi
+    ESP.restart();
+    delay(1000);
   }
   Serial.println("\nWiFi Terhubung!");
+  Serial.print("IP Address: ");
+  Serial.println(WiFi.localIP());
 
   // Konfigurasi Kamera
   camera_config_t config;
@@ -129,14 +131,10 @@ String sendPhotoTelegram() {
   // --- LOGIKA MENYALAKAN FLASH ---
   digitalWrite(FLASH_PIN, HIGH); // Nyalakan lampu flash
   delay(200);                    // Beri jeda 200ms agar cahaya flash maksimal sebelum difoto
-
-  // fb = esp_camera_fb_get();      // Ambil gambar lama yang mengantri
-  // esp_camera_fb_return(fb);      // Buang gambar lama
-
+  
   fb = esp_camera_fb_get();      // Ambil gambar BARU yang sedang disinari flash
   
   digitalWrite(FLASH_PIN, LOW);  // Matikan kembali lampu flash
-  // -------------------------------
 
   if(!fb) {
     Serial.println("Gagal mengambil foto");
