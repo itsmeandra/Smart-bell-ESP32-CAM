@@ -1,9 +1,7 @@
 #include "WiFi.h"
 #include "WiFiClientSecure.h"
 #include "esp_camera.h"
-
-const char* ssid     = "";     //SSID WiFi
-const char* password = "";    //Ganti dengan Password WiFi
+#include <WiFiManager.h>
 
 String BOT_TOKEN = "";  // API Telegram
 String CHAT_ID   = "";  // ID Telegram
@@ -43,15 +41,19 @@ void setup() {
   pinMode(BUZZER_PIN, OUTPUT);
 
   // Setup Koneksi WiFi
+  WiFiManager wifiManager;
+  
   WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid, password);
-  Serial.print("Menghubungkan ke WiFi");
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
+  if (!wifiManager.autoConnect("Smart-Doorbell")) {
+    Serial.println("Gagal terhubung dan kehabisan waktu (Timeout).");
+    // Restart ESP32 dan coba lagi
+    ESP.restart();
+    delay(1000);
   }
   Serial.println("\nWiFi Terhubung!");
-
+  Serial.print("IP Address: ");
+  Serial.println(WiFi.localIP());
+  
   // Konfigurasi Kamera
   camera_config_t config;
   config.ledc_channel = LEDC_CHANNEL_0;
