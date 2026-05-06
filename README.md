@@ -6,7 +6,7 @@ Terdapat dua varian kode:
 - Dengan Flash LED `smartbell_flash_telegram.ino` – menyalakan LED flash internal saat memotret untuk penerangan tambahan.
 
 ## Fitur
-- Terhubung ke WiFi
+- Terhubung ke WiFi via WifiManager
 - Membaca input tombol (dengan debounce 5 detik)
 - Membunyikan buzzer dengan nada dua tingkat
 - Mengambil foto menggunakan kamera ESP32
@@ -19,15 +19,16 @@ Terdapat dua varian kode:
 - Tombol (push button) – bisa menggunakan built-in jika ada, atau eksternal
 - Buzzer pasif
 - Kabel jumper
-- Power supply (5V) – misal dari USB atau adaptor
 
 ## Pin Koneksi
 Kamera menggunakan konfigurasi default AI-Thinker. Berikut pin yang digunakan:
-| Komponen | Pin GPIO |
-|----------|----------|
-| Button | 14 |
-| Buzzer | 12 |
-| Flash LED (jika ada) | 4 |
+| Komponen | Komponen PIN | ESP32 CAM PIN |
+| :--- | :--- | :--- |
+| **Push Button** | OFF | **GPIO 14** |
+| | GND | **GND** |
+| **Buzzer Passive** | + (plus) | **GPIO 12** |
+| | - (minus) | **GND** |
+| Flash LED | 4 |
 
 > **Catatan:** Tombol menggunakan internal pull-up, sehingga kondisi LOW saat ditekan.
 
