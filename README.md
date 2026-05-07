@@ -21,11 +21,11 @@ Terdapat dua varian kode:
 
 ---
 
-## Komponen yang Diperlukan\
+## Komponen
 - [**ESP32-CAM** (module AI-Thinker)](https://s.shopee.co.id/5VRyA3y81N)
 - [**ESP32-CAM-MB Type- C**](https://s.shopee.co.id/5VRyA3y81N)
 - [**Push Button** – bisa menggunakan built-in jika ada, atau eksternal](https://s.shopee.co.id/9Uy6vXOHCc)
-- [**Buzzer Pasive**](https://s.shopee.co.id/5L8XxyOEzg)
+- [**Buzzer Passive**](https://s.shopee.co.id/5L8XxyOEzg)
 - [**Kabel Jumper**](https://s.shopee.co.id/8fOzwA14Dv)
 
 ---
@@ -48,7 +48,7 @@ Kamera menggunakan konfigurasi default AI-Thinker. Berikut pin yang digunakan:
 
 #### 1. Install Board ESP32 di Arduino IDE:
 
-- Tambahkan URL berikut ke File > Preferences > Additional Boards Manager URLs: [Arduino ESP32-CAM](https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json).
+- Tambahkan URL berikut ke File > Preferences > Additional Boards Manager: [Arduino ESP32-CAM](https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json).
 - Buka Tools > Board > Boards Manager, cari "ESP32" dan install.
 
 #### 2. Install Library yang Diperlukan (umumnya sudah termasuk dalam paket ESP32):
